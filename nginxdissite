@@ -1,0 +1,24 @@
+#!/bin/bash
+ 
+# nginxdissite
+ 
+if [ -z $1 ]; then
+        echo 
+        echo "You must specify a site name"
+        exit 0
+fi
+ 
+NGINX_CONF=/opt/nginx/conf
+CONF_FILE="$1"
+AVAILABLE_PATH="$NGINX_CONF/sites-available/$CONF_FILE"
+ENABLED_PATH="$NGINX_CONF/sites-enabled/$CONF_FILE"
+ 
+echo 
+if [ -e $ENABLED_PATH ]; then
+        rm $ENABLED_PATH
+ 
+        echo "$1 has been disabled"
+        echo "run /etc/init.d/nginx reload to apply the changes"        
+else
+        echo "$ENABLED_PATH does not exist, ignoring"
+fi
