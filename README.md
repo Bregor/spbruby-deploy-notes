@@ -115,7 +115,72 @@ Place ./etc/init.d/nginx to /etc/init.d/nginx
     # chmod 755 /etc/init.d/nginx
     # update-rc -f nginx default
 
-# Configure mysql (postgres), (add user, disable access from the outside)
+# Configure RDBMS
+## PostgreSQL related stuff
+* Access only from localhost
+
+Add to the */etc/postgresql/8.4/main/postgresql.conf*
+    listen_addresses = 'localhost'
+* Easy access from localhost
+
+Add to */etc/postgresql/8.4/main/pg_hba.conf*
+    # TYPE  DATABASE    USER        CIDR-ADDRESS          METHOD
+    # Database administrative login by UNIX sockets
+    # "local" is for Unix domain socket connections only
+                                                                                                                                                   
+    # local   all         postgres                          ident
+    local   all         all                               trust
+
+
+* Adding user and database
+
+Run:
+    $ psql -Upostgres
+    postgres=# ALTER ROLE postgres ENCRYPTED PASSWORD 'supersecurerootpassword';
+    postgres=# CREATE ROLE spbruby NOSUPERUSER LOGIN ENCRYPTED PASSWORD 'superpupermegapasword';
+    postgres=# CREATE DATABASE spbruby OWNER spbruby;
+
+## MySQL related stuff
+First run:
+    # mysql_secure_installation
+Fill the questionnaire:
+
+**Enter current password for root (enter for none):** 
+
+**Change the root password? [Y/n]** *n*
+
+** ... skipping.**
+
+** Remove anonymous users? [Y/n]** *y* 
+
+** ... Success!**
+
+** Disallow root login remotely? [Y/n]** *y*
+
+** ... Success!**
+
+**Remove test database and access to it? [Y/n]** *y*
+
+** - Dropping test database...**
+
+** ... Success!**
+
+** - Removing privileges on test database...**
+
+** ... Success!**
+
+**Reloading the privilege tables will ensure that all changes made so far will take effect immediately.**
+
+**Reload privilege tables now? [Y/n]** *y* 
+
+** ... Success!**
+
+Then run:
+    $ mysql -uroot -p
+    mysql> CREATE DATABASE spbruby;
+    mysql> GRANT ALL ON spbruby.* TO spbruby@localhost IDENTIFIED BY 'superpuperpassword';
+    mysql> FLUSH PRIVILEGES;
+
 # Configure nginx
 
 # Backups
