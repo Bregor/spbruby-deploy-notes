@@ -101,7 +101,7 @@ Please specify the directory: /usr/local/src/nginx
 Please specify a prefix directory [/opt/nginx]: 
 Extra arguments to pass to configure script: --with-http_dav_module --with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data
 
-Place http://gist.github.com/raw/292476/d8d55b21981658461580a9a02ccab8df5caf393c/nginx to /etc/init.d/nginx
+Place ./etc/init.d/nginx to /etc/init.d/nginx
     # chmod 755 /etc/init.d/nginx
     # update-rc -f nginx default
 
