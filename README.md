@@ -39,7 +39,7 @@ Add to ~/.bash_profile:
       . ~/.bash_aliases
     fi
 Add to ~/.bash_aliases:
-    alias ls='ls -G'
+    alias ls='ls --color=auto'
     alias ll='ls -l'
     alias la='ls -al'
     alias l='ls -CF'
