@@ -22,6 +22,28 @@
 
 # Set up basic firewall (iptables), make it work on startup
 # Tweak bash (add color, aliases)
+Add to ~/.bash_profile:
+
+    if [ -f /etc/bash_completion ]; then
+      . /etc/bash_completion
+    fi
+
+    # set a fancy prompt (non-color, unless we know we "want" color)
+    if [[ ${EUID} == 0 ]] ; then	
+      PS1='\[\033[01;31m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+    else
+      PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w `git branch 2>&1 | grep "*" | awk -F" " "{print \\\$2}"`\$\[\033[00m\] '
+    fi
+
+    if [ -f ~/.bash_aliases ]; then
+      . ~/.bash_aliases
+    fi
+Add to ~/.bash_aliases:
+    alias ls='ls -G'
+    alias ll='ls -l'
+    alias la='ls -al'
+    alias l='ls -CF'
+    alias grep='grep --color'
 # Update sources (sudo aptitude update)
     # apt-get update
     # apt-get dist-upgrade
