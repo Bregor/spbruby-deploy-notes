@@ -181,8 +181,33 @@ Then run:
     mysql> GRANT ALL ON spbruby.* TO spbruby@localhost IDENTIFIED BY 'superpuperpassword';
     mysql> FLUSH PRIVILEGES;
 
-# Configure nginx
+# Configuring SSL
+## Creating self-signed CA
+    # apt-get install openvpn
+    # mv /usr/share/openvpn/easy-rsa /etc/ssl/
+    # apt-get remove openvpn
+    $ cd /etc/ssl/easy-rsa
+Update *vars* file with following:
+    export KEY_COUNTRY="RU"
+    export KEY_PROVINCE="RU"
+    export KEY_CITY="Saint Petersburg"
+    export KEY_ORG="spbruby.org"
+    export KEY_EMAIL="security@spbruby.org"
+Import *vars* to current shell:
+    # . vars
+Initialize the $KEY_DIR directory:
+    # ./clean-all
+Build a root certificate
+    # ./build-ca
+## Creating server-side certificates
+Build Diffie-Hellman parameters for the server side of an SSL/TLS connection.
+    # ./build-dh
+Make a certificate/private key pair using a locally generated root certificate.
+    # ./build-key-server spbruby.org
+    # ./build-key-server mail.spbruby.org
 
+# Configure nginx
+First we need to create 
 # Backups
 # Logs (logrotate ?)
 # Monitoring
