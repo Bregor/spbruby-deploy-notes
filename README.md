@@ -21,6 +21,11 @@
       AllowUsers spbruby
 
 # Set up basic firewall (iptables), make it work on startup
+    # mkdir -p /var/lib/iptables
+    # cp var/lib/iptables/rules_save /var/lib/iptables/
+Add to main interface settings in /etc/network/interfaces:
+    pre-up /sbin/iptables-restore < /var/lib/iptables/rules_save
+
 # Tweak bash (add color, aliases)
 Add to ~/.bash_profile:
 
