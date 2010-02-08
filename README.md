@@ -64,9 +64,9 @@ $ cd rubygems-1.3.5
 13. Install nginx and phusion passenger
 # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev
 $ cd /usr/local/src
-$ wget http://sysoev.ru/nginx/nginx-0.7.64.tar.gz
-$ tar xvf nginx-0.7.64.tar.gz
-$ ln -s nginx-0.7.64 nginx
+$ wget http://sysoev.ru/nginx/nginx-0.7.65.tar.gz
+$ tar xvf nginx-0.7.65.tar.gz
+$ ln -s nginx-0.7.65 nginx
 $ git clone git://github.com/FooBarWidget/passenger.git
 $ cd passenger
 # ./bin/passenger-install-nginx-module
@@ -84,8 +84,13 @@ Please specify the directory: /usr/local/src/nginx
 Please specify a prefix directory [/opt/nginx]: 
 Extra arguments to pass to configure script: --with-http_dav_module --with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data
 
+Place http://gist.github.com/raw/292476/d8d55b21981658461580a9a02ccab8df5caf393c/nginx to /etc/init.d/nginx
+# chmod 755 /etc/init.d/nginx
+# update-rc -f nginx default
+
 14. Configure mysql (postgres), (add user, disable access from the outside)
 14. Configure nginx
+
 15. Backups
 16. Logs (logrotate ?)
 17. Monitoring
