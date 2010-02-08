@@ -111,10 +111,6 @@ Add to ~/.bash_aliases:
 
 **Extra arguments to pass to configure script:** *--with-http_dav_module --with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data*
 
-Place ./etc/init.d/nginx to /etc/init.d/nginx
-    # chmod 755 /etc/init.d/nginx
-    # update-rc -f nginx default
-
 # Configure RDBMS
 ## PostgreSQL related stuff
 * Access only from localhost
@@ -207,7 +203,24 @@ Make a certificate/private key pair using a locally generated root certificate.
     # ./build-key-server mail.spbruby.org
 
 # Configure nginx
-First we need to create 
+Place *./etc/init.d/nginx* to */etc/init.d/*
+Make them executable
+    # chmod 755 /etc/init.d/nginx
+And ready to autostart
+    # update-rc -f nginx default
+Place utils for manage nginx vhosts to */usr/local/bin/* and make them executable:
+    # chmod +x ./usr/local/bin/*
+    # mv ./usr/local/bin/* /usr/local/bin/
+Then place *./opt/nginx/conf/nginx.conf* to */opt/nginx/conf/*
+
+After that we need to create folders for vhosts configuration
+    $ cd /opt/nginx/conf
+    # mkdir sites-available sites-enabled
+And then place config-file for our vhost (*./opt/nginx/conf/sites-available/spbruby.org*) to */opt/nginx/conf/sites-available/*
+
+And enable vhost:
+    # nginxensite spbruby.org
+
 # Backups
 # Logs (logrotate ?)
 # Monitoring

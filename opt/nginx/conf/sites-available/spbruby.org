@@ -1,0 +1,60 @@
+server {
+  listen       80;
+  server_name  spbruby.org;
+
+  charset utf-8;
+
+  access_log  /var/www/spbruby.org/log/access.log  combined;
+  error_log  /var/www/spbruby.org/log/error.log debug;
+
+  root /var/www/spbruby.org/gitorious/public;
+
+  location / {
+    default_type text/html;
+    if ($request_method = POST) {
+      passenger_enabled on;
+      break;
+    }
+    try_files /maintenance.html $uri $uri/index.html $uri.html @modrails;
+    passenger_enabled off;
+  }
+
+  location @modrails {
+    passenger_enabled on;
+  }
+ 
+}
+
+
+server {
+  listen 443;
+  ssl on;
+  ssl_certificate      /etc/ssl/easy-rsa/keys/spbruby.org.crt;
+  ssl_certificate_key  /etc/ssl/easy-rsa/keys/spbruby.org.key;
+  ssl_session_cache    shared:SSL:10m;
+  ssl_session_timeout  10m;
+
+  server_name spbruby.org;
+
+  charset utf-8;
+
+  access_log /var/www/spbruby.org/log/access-ssl.log;
+  error_log /var/www/spbruby.org/log/error-ssl.log;  
+
+  root /var/www/spbruby.org/gitorious/public;
+
+  location / {
+    default_type text/html;
+    if ($request_method = POST) {
+      passenger_enabled on;
+      break;
+    }
+    try_files /maintenance.html $uri $uri/index.html $uri.html @modrails;
+    passenger_enabled off;
+  }
+
+  location @modrails {
+    passenger_enabled on;
+  }
+
+}
