@@ -1,5 +1,4 @@
 # change root password
-(How do you generate passwords)
     # apt-get install apg
     $ apg -m64
     # passwd root
@@ -83,8 +82,8 @@ Add to ~/.bash_aliases:
     # gem in rubygems-update gemcutter --no-ri --no-rdoc
 
 # Install Rails
-    # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient-dev
-    # gem in sqlite3-ruby mysql rails thin  --no-ri --no-rdoc
+    # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient-dev postgresql-8.4 postgresql-server-dev-8.4 libpq-dev
+    # gem in sqlite3-ruby mysql pg rails thin  --no-ri --no-rdoc
 
 # Install nginx and phusion passenger
     # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev
