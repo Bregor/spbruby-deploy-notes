@@ -1,4 +1,4 @@
-# change root password
+# Change root password
     # apt-get install apg
     $ apg -m64
     # passwd root
@@ -15,9 +15,11 @@ Add following:
     local$ cat .ssh/id_rsa.pub
     remote$ mkdir .ssh
     remote$ cat > .ssh/authorized_keys
+    remote$ chmod 600 .ssh/authorized_keys
+    remote$ chmod 700 .ssh
 
 # Change SSH port, disable root logins via ssh, allow  only certain users to ssh
-Update /etc/ssh/sshd_config with:
+Update */etc/ssh/sshd_config* with:
       Port 22222
       PermitRootLogin = No
       AllowUsers spbruby
@@ -25,11 +27,11 @@ Update /etc/ssh/sshd_config with:
 # Set up basic firewall (iptables), make it work on startup
     # mkdir -p /var/lib/iptables
     # cp var/lib/iptables/rules_save /var/lib/iptables/
-Add to main interface settings in /etc/network/interfaces:
+Add to main interface settings in */etc/network/interfaces*:
     pre-up /sbin/iptables-restore < /var/lib/iptables/rules_save
 
 # Tweak bash (add color, aliases)
-Add to ~/.bash_profile:
+Add to *~/.bash_profile*:
 
     if [ -f /etc/bash_completion ]; then
       . /etc/bash_completion
@@ -45,13 +47,13 @@ Add to ~/.bash_profile:
     if [ -f ~/.bash_aliases ]; then
       . ~/.bash_aliases
     fi
-Add to ~/.bash_aliases:
+Add to *~/.bash_aliases*:
     alias ls='ls --color=auto'
     alias ll='ls -l'
     alias la='ls -al'
     alias l='ls -CF'
     alias grep='grep --color'
-# Update sources (sudo aptitude update)
+# Update base system
     # apt-get update
     # apt-get dist-upgrade
 
