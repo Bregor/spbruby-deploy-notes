@@ -1,9 +1,10 @@
-# Change root password
+# Primary Settings
+## Change root password
     # apt-get install apg
     $ apg -m64
     # passwd root
 
-# Add user, add to sudoers
+## Add admin user
     # useradd -g admin -d /home/spbruby -m -s /bin/bash spbruby
     # passwd spbruby
     # visudo
@@ -11,26 +12,31 @@ Add following:
     %admin ALL NOPASSWD:ALL
 
 
-# Copy your ssh key to the server, add ssh alias
+## Public key auth
     local$ cat .ssh/id_rsa.pub
     remote$ mkdir .ssh
     remote$ cat > .ssh/authorized_keys
     remote$ chmod 600 .ssh/authorized_keys
     remote$ chmod 700 .ssh
 
-# Change SSH port, disable root logins via ssh, allow  only certain users to ssh
+## Configure OpenSSH
 Update */etc/ssh/sshd_config* with:
       Port 22222
       PermitRootLogin = No
       AllowUsers spbruby
 
-# Set up basic firewall (iptables), make it work on startup
+## Firewall
     # mkdir -p /var/lib/iptables
     # cp var/lib/iptables/rules_save /var/lib/iptables/
 Add to main interface settings in */etc/network/interfaces*:
     pre-up /sbin/iptables-restore < /var/lib/iptables/rules_save
 
-# Tweak bash (add color, aliases)
+## Update base system
+    # apt-get update
+    # apt-get dist-upgrade
+
+# User shell settings
+## Colors, aliases, git-branch, etc
 Add to *~/.bash_profile*:
 
     if [ -f /etc/bash_completion ]; then
@@ -53,19 +59,18 @@ Add to *~/.bash_aliases*:
     alias la='ls -al'
     alias l='ls -CF'
     alias grep='grep --color'
-# Update base system
-    # apt-get update
-    # apt-get dist-upgrade
 
-# Set the system locale
-    $ cat >> ~/.bash_profile
+## Locale settings
+Add to *~/.bash_profile*
     export LANG=ru_RU.UTF-8
     export LC_MESSAGES=C
 
-# Install prerequisites
+# Primary Software Install
+ 
+## Prerequisites
     # apt-get install -y build-essential git-core git-svn automake autoconf
 
-# Install rubyEE
+## RubyEE
     # chgrp admin /usr/local/src/
     # chmod g+ws /usr/local/src/
     $ cd /usr/local/src/
@@ -76,18 +81,18 @@ Add to *~/.bash_aliases*:
     $ make
     # make install
 
-# Install RubyGems
+## RubyGems
     $ wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
     $ tar xvf rubygems-1.3.5.tgz
     $ cd rubygems-1.3.5
     # ruby setup.rb
     # gem in rubygems-update gemcutter --no-ri --no-rdoc
 
-# Install Rails
+## Rails
     # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient-dev postgresql-8.4 postgresql-server-dev-8.4 libpq-dev
     # gem in sqlite3-ruby mysql pg rails thin  --no-ri --no-rdoc
 
-# Install nginx and phusion passenger
+## NGINX and Phusion Passenger
     # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev
     $ cd /usr/local/src
     $ wget http://sysoev.ru/nginx/nginx-0.7.65.tar.gz
@@ -179,8 +184,8 @@ Then run:
     mysql> GRANT ALL ON spbruby.* TO spbruby@localhost IDENTIFIED BY 'superpuperpassword';
     mysql> FLUSH PRIVILEGES;
 
-# Configuring SSL
-## Creating self-signed CA
+# Configure SSL
+## Create self-signed CA
     # apt-get install openvpn
     # mv /usr/share/openvpn/easy-rsa /etc/ssl/
     # apt-get remove openvpn
@@ -197,7 +202,7 @@ Initialize the $KEY_DIR directory:
     # ./clean-all
 Build a root certificate
     # ./build-ca
-## Creating server-side certificates
+## Create server-side certificates
 Build Diffie-Hellman parameters for the server side of an SSL/TLS connection.
     # ./build-dh
 Make a certificate/private key pair using a locally generated root certificate.
@@ -205,14 +210,17 @@ Make a certificate/private key pair using a locally generated root certificate.
     # ./build-key-server mail.spbruby.org
 
 # Configure nginx
+## Autostart
 Place *./etc/init.d/nginx* to */etc/init.d/*
 Make them executable
     # chmod 755 /etc/init.d/nginx
 And ready to autostart
     # update-rc -f nginx default
+## Vhosts management
 Place utils for manage nginx vhosts to */usr/local/bin/* and make them executable:
     # chmod +x ./usr/local/bin/*
     # mv ./usr/local/bin/* /usr/local/bin/
+## Configuration
 Then place *./opt/nginx/conf/nginx.conf* to */opt/nginx/conf/*
 
 After that we need to create folders for vhosts configuration
