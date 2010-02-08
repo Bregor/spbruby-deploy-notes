@@ -7,15 +7,18 @@
 # Add user, add to sudoers
     # useradd -g admin -d /home/spbruby -m -s /bin/bash spbruby
     # passwd spbruby
+    # visudo
+Add following:
+    %admin ALL NOPASSWD:ALL
+
 
 # Copy your ssh key to the server, add ssh alias
     local$ cat .ssh/id_rsa.pub
     remote$ mkdir .ssh
     remote$ cat > .ssh/authorized_keys
-        %admin ALL NOPASSWD:ALL
 
 # Change SSH port, disable root logins via ssh, allow  only certain users to ssh
-    # emacs /etc/ssh/sshd_config
+Update /etc/ssh/sshd_config with:
       Port 22222
       PermitRootLogin = No
       AllowUsers spbruby
@@ -93,18 +96,21 @@ Add to ~/.bash_aliases:
     $ cd passenger
     # ./bin/passenger-install-nginx-module
 
-After the message:
-Automatically download and install Nginx?
+**Automatically download and install Nginx?**
+
 ...
-Enter your choice (1 or 2) or press Ctrl-C to abort:
 
-Choose 2 and press enter
+**Enter your choice (1 or 2) or press Ctrl-C to abort:**
 
-Where is your Nginx source code located?
+*Choose 2 and press enter*
 
-Please specify the directory: /usr/local/src/nginx
-Please specify a prefix directory [/opt/nginx]: 
-Extra arguments to pass to configure script: --with-http_dav_module --with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data
+**Where is your Nginx source code located?**
+
+**Please specify the directory:** */usr/local/src/nginx*
+
+**Please specify a prefix directory** *[/opt/nginx]:*
+
+**Extra arguments to pass to configure script:** *--with-http_dav_module --with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data*
 
 Place ./etc/init.d/nginx to /etc/init.d/nginx
     # chmod 755 /etc/init.d/nginx
