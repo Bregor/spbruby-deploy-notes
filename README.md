@@ -232,6 +232,9 @@ And enable vhost:
     # nginxensite spbruby.org
 
 # Backups
+    # gem in astrails-safe --no-rdoc --no-ri
+Place safe config from *./etc/safe.rb* to */etc*
+
 # Logs (logrotate ?)
 # Monitoring
 # Deployment ?
