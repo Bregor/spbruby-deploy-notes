@@ -37,6 +37,7 @@ Add to main interface settings in */etc/network/interfaces*:
 
 # User shell settings
 ## Colors, aliases, git-branch, etc
+    # apt-get install bash-completion
 Add to *~/.bash_profile*:
 
     if [ -f /etc/bash_completion ]; then
@@ -71,6 +72,7 @@ Add to *~/.bash_profile*
     # apt-get install -y build-essential git-core git-svn automake autoconf
 
 ## RubyEE
+    # apt-get install -y tcl-dev libexpat1-dev zlib1g zlib1g-dev libyaml-dev libonig-dev libopenssl-ruby libssl-dev libdbm-ruby libgdbm-ruby libgif4 readline-common libreadline-dev libreadline-ruby libtcltk-ruby byacc
     # chgrp admin /usr/local/src/
     # chmod g+ws /usr/local/src/
     $ cd /usr/local/src/
@@ -89,8 +91,8 @@ Add to *~/.bash_profile*
     # gem in rubygems-update gemcutter --no-ri --no-rdoc
 
 ## Rails
-    # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient-dev postgresql-8.4 postgresql-server-dev-8.4 libpq-dev
-    # gem in sqlite3-ruby mysql pg rails thin  --no-ri --no-rdoc
+    # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient15-dev postgresql-8.3 postgresql-server-dev-8.3 libpq-dev
+    # gem in sqlite3-ruby mysql pg thin rails  --no-ri --no-rdoc
 
 ## NGINX and Phusion Passenger
     # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev
@@ -141,7 +143,7 @@ Run:
     $ psql -Upostgres
     postgres=# ALTER ROLE postgres ENCRYPTED PASSWORD 'supersecurerootpassword';
     postgres=# CREATE ROLE spbruby NOSUPERUSER LOGIN ENCRYPTED PASSWORD 'superpupermegapasword';
-    postgres=# CREATE DATABASE spbruby OWNER spbruby;
+    postgres=# CREATE DATABASE spbruby ENCODING 'UTF-8' OWNER spbruby;
 
 ## MySQL related stuff
 First run:
@@ -186,9 +188,10 @@ Then run:
 
 # Configure SSL
 ## Create self-signed CA
-    # apt-get install openvpn
-    # mv /usr/share/openvpn/easy-rsa /etc/ssl/
-    # apt-get remove openvpn
+    # apt-get install -y openvpn
+    # mv /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/ssl/
+    # apt-get remove -y openvpn
+    # apt-get -y autoremove
     $ cd /etc/ssl/easy-rsa
 Update *vars* file with following:
     export KEY_COUNTRY="RU"
@@ -215,10 +218,10 @@ Place *./etc/init.d/nginx* to */etc/init.d/*
 Make them executable
     # chmod 755 /etc/init.d/nginx
 And ready to autostart
-    # update-rc -f nginx default
+    # update-rc.d -f nginx default
 ## Vhosts management
 Place utils for manage nginx vhosts to */usr/local/bin/* and make them executable:
-    # chmod +x ./usr/local/bin/*
+    $ chmod +x ./usr/local/bin/*
     # mv ./usr/local/bin/* /usr/local/bin/
 ## Configuration
 Then place *./opt/nginx/conf/nginx.conf* to */opt/nginx/conf/*
@@ -232,9 +235,16 @@ And enable vhost:
     # nginxensite spbruby.org
 
 # Backups
+## Installation
     # gem in astrails-safe --no-rdoc --no-ri
 Place safe config from *./etc/safe.rb* to */etc*
+## Schedule
+    # cat > /etc/cron.daily/safe
+      /usr/local/bin/astrails-safe /etc/safe.rb
+      ^D
+    # chmod 755 /etc/cron.daily/safe
+# Logs Rotation
+    # apt-get install logrotate
 
-# Logs (logrotate ?)
 # Monitoring
 # Deployment ?
