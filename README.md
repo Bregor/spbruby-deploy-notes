@@ -246,5 +246,21 @@ Place safe config from *./etc/safe.rb* to */etc*
 # Logs Rotation
     # apt-get install logrotate
 
+# Mail
+## Install
+    # apt-get install -y exim4-daemon-heavy dovecot-common
+    #dovecot-imapd dovecot-pop3d clamav-daemon
+## DB configuration
+    $ psql -Upostgres
+    postgres=# CREATE ROLE mail NOSUPERUSER LOGIN ENCRYPTED PASSWORD 'mailpassword';
+    postgres=# CREATE DATABASE mail ENCODING 'UTF-8' OWNER mail;
+## SMTP configuration
+    # cp etc/exim4/exim.conf /etc/exim4/exim.conf.template
+    # cp etc/aliasdomains /etc/aliasdomains
+    # /etc/init.d/exim4 restart
+## IMAP4/POP3 configuration
+    # cp etc/dovecot/* /etc/dovecot
+    # /etc/init.d/dovecot restart
+
 # Monitoring
 # Deployment ?
