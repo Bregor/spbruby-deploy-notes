@@ -248,8 +248,8 @@ Place safe config from *./etc/safe.rb* to */etc*
 
 # Mail
 ## Install
-    # apt-get install -y exim4-daemon-heavy dovecot-common
-    #dovecot-imapd dovecot-pop3d clamav-daemon
+    # apt-get install -y exim4-daemon-heavy dovecot-common dovecot-imapd dovecot-pop3d clamav-daemon
+    # mkdir /var/log/dovecot
 ## DB configuration
     $ psql -Upostgres
     postgres=# CREATE ROLE mail NOSUPERUSER LOGIN ENCRYPTED PASSWORD 'mailpassword';
@@ -263,4 +263,3 @@ Place safe config from *./etc/safe.rb* to */etc*
     # /etc/init.d/dovecot restart
 
 # Monitoring
-# Deployment ?
