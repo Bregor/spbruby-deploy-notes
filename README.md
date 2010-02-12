@@ -250,10 +250,12 @@ Place safe config from *./etc/safe.rb* to */etc*
 ## Install
     # apt-get install -y exim4-daemon-heavy dovecot-common dovecot-imapd dovecot-pop3d clamav-daemon
     # mkdir /var/log/dovecot
+    # gpasswd -a clamav Debian-Exim
 ## DB configuration
     $ psql -Upostgres
     postgres=# CREATE ROLE mail NOSUPERUSER LOGIN ENCRYPTED PASSWORD 'mailpassword';
     postgres=# CREATE DATABASE mail ENCODING 'UTF-8' OWNER mail;
+    $ psql -Upostgres mail < etc/exim4/mail_schema.pgsql
 ## SMTP configuration
     # cp etc/exim4/exim.conf /etc/exim4/exim.conf.template
     # cp etc/aliasdomains /etc/aliasdomains
@@ -261,5 +263,16 @@ Place safe config from *./etc/safe.rb* to */etc*
 ## IMAP4/POP3 configuration
     # cp etc/dovecot/* /etc/dovecot
     # /etc/init.d/dovecot restart
+## Web interface
+    # mkdir -p /var/www/mail.spbruby.org
+    # chown www-data:www-data /var/www/mail.spbruby.org
+    # chmod ug+ws /var/www/mail.spbruby.org
+    $ cd /var/www/mail.spbruby.org
+    $ mkdir conf log public
+    $ cd /usr/local/src
+    $ wget http://sunet.dl.sourceforge.net/project/roundcubemail/roundcubemail/0.3.1/roundcubemail-0.3.1.tar.gz
+    # tar xvf roundcubemail-0.3.1.tar.gz -C /var/www/mail.spbruby.org/
+Now we must place *opt/nginx/conf/sites-available/mail.spbruby.org* to */opt/nginx/conf/sites-available/*  
+And enable it.
 
 # Monitoring

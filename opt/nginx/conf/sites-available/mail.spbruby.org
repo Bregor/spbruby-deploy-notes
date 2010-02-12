@@ -1,0 +1,45 @@
+server {
+  listen       80;
+  server_name  mail.spbruby.org;
+
+  charset utf-8;
+
+  access_log  /var/www/mail.spbruby.org/log/access.log  combined;
+  error_log  /var/www/mail.spbruby.org/log/error.log debug;
+  rewrite ^(.*) https://mail.spbruby.org$1 redirect;
+
+}
+
+
+server {
+  listen 443;
+  ssl on;
+  ssl_certificate      /etc/ssl/easy-rsa/keys/mail.spbruby.org.crt;
+  ssl_certificate_key  /etc/ssl/easy-rsa/keys/mail.spbruby.org.key;
+  ssl_session_cache    shared:SSL:10m;
+  ssl_session_timeout  10m;
+
+  server_name mail.spbruby.org;
+
+  charset utf-8;
+
+  access_log /var/www/mail.spbruby.org/log/access-ssl.log;
+  error_log /var/www/mail.spbruby.org/log/error-ssl.log;  
+
+  root /var/www/mail.spbruby.org/roundcube;
+  default_type text/html;
+  index index.php index.html;
+
+  location / {
+    }
+
+
+
+  location ~ \.php$ {
+    fastcgi_pass    127.0.0.1:9000;
+    fastcgi_index   index.php;
+    fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
+    include         fastcgi_params;
+    }
+
+}
