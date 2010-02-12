@@ -1,0 +1,26 @@
+check process nginx with pidfile /var/run/nginx.pid
+   group www
+   start program = "/etc/init.d/nginx start"
+   stop  program = "/etc/init.d/nginx stop"
+   if failed host localhost port 80 
+        protocol HTTP request "/" then restart
+  #  if failed host 192.168.1.1 port 443 type TCPSSL 
+  #       certmd5 12-34-56-78-90-AB-CD-EF-12-34-56-78-90-AB-CD-EF
+	# protocol HTTP request http://localhost/~hauk/monit/token  then restart
+   if 5 restarts within 5 cycles then timeout
+   depends on nginx_bin
+   depends on nginx_rc
+
+ check file nginx_bin with path /opt/nginx/sbin/nginx
+   group www
+   if failed checksum then unmonitor
+   if failed permission 755 then unmonitor
+   if failed uid root then unmonitor
+   if failed gid root then unmonitor
+
+ check file nginx_rc with path /etc/init.d/nginx
+   group www
+   if failed checksum then unmonitor
+   if failed permission 755 then unmonitor
+   if failed uid root then unmonitor
+   if failed gid root then unmonitor
