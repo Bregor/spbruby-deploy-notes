@@ -1,0 +1,25 @@
+/var/www/spbruby.org/rails/shared/log/*.log {
+  daily
+  missingok
+  rotate 30
+  compress
+  delaycompress
+  sharedscripts
+  postrotate
+    touch /var/www/spbruby.org/current/tmp/restart.txt
+  endscript
+}
+
+/var/www/spbruby.org/log/*.log/ {
+	daily
+	missingok
+	rotate 52
+	compress
+	delaycompress
+	notifempty
+	create 644 root www-data
+	sharedscripts
+	postrotate
+		[ ! -f /var/run/nginx.pid ] || kill -USR1 `cat /var/run/nginx.pid`
+	endscript
+}

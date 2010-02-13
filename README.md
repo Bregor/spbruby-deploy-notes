@@ -245,6 +245,7 @@ Place safe config from *./etc/safe.rb* to */etc*
     # chmod 755 /etc/cron.daily/safe
 # Logs Rotation
     # apt-get install logrotate
+Place *etc/logrotate.d/spbruby.org* and *etc/logrotate.d/nginx* to */etc/logrotate.d*
 
 # Mail
 ## Install
