@@ -1,4 +1,6 @@
 # Primary Settings
+  What is the OS installed on the server?
+  
 ## Change root password
     # apt-get install apg
     $ apg -m64
@@ -73,16 +75,30 @@ Add to *~/.bash_profile*
 
 ## RubyEE
     # apt-get install -y tcl-dev libexpat1-dev zlib1g zlib1g-dev libyaml-dev libonig-dev libopenssl-ruby libssl-dev libdbm-ruby libgdbm-ruby libgif4 readline-common libreadline-dev libreadline-ruby libtcltk-ruby byacc
+    installing libyaml-dev fails: "E: Couldn't find package libyaml-dev" (Ubuntu 8.04)
+    What I did:
+    # apt-get remove tcl-dev libtcltk-ruby 
+    # apt-get autoremove
+    Why this package were needed? I've managed to compile ruby and install gems without them, what else could be removed from the above package list?
+
     # chgrp admin /usr/local/src/
     # chmod g+ws /usr/local/src/
     $ cd /usr/local/src/
     $ git clone git://github.com/FooBarWidget/rubyenterpriseedition187.git
+    (why 187 rather than git://github.com/FooBarWidget/rubyenterpriseedition187-248.git?)
     $ cd rubyenterpriseedition187/
     $ autoconf 
     $ ./configure --enable-pthread --enable-shared 
+    Why --enable-pthread?
+
+    From http://www.rubyenterpriseedition.com/documentation.html#_tcl_tk_compatibility_and_tt_enable_pthread_tt
+    In order to use Tcl/Tk with threading support, the Ruby interpreter must be compiled with --enable-pthread. By default, Ruby Enterprise Edition's interpreter is not compiled with --enable-pthread. You can compile the Ruby Enterprise Edition interpreter with this flag by passing -c --enable-pthread to its installer, like this:
+    ./ruby-enterprise-X.X.X/installer -c --enable-pthread
+    Please note that enabling --enable-pthread will make the Ruby interpreter *about 50% slower*. It is for this reason that we don't recommend enabling --enable-shared on server environments, although it's fine for desktop environments.
+    Also see http://timetobleed.com/fix-a-bug-in-rubys-configurein-and-get-a-30-performance-boost/
+
     $ make
     # make install
-
 ## RubyGems
     $ wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
     $ tar xvf rubygems-1.3.5.tgz
@@ -91,6 +107,10 @@ Add to *~/.bash_profile*
     # gem in rubygems-update gemcutter --no-ri --no-rdoc
 
 ## Rails
+    Not sure if this step must be here. It is an application specific things and they have to be installed as part of deployment
+    Also I don't think that gems have to be installed under root. I would create a dedicated user per web application (spbruby in that case) 
+    and install gem under it. This way it should be possible to have several applications depending on different gem versions and they
+    should not conflict (tough I have not tested it yet).
     # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient15-dev postgresql-8.3 postgresql-server-dev-8.3 libpq-dev
     # gem in sqlite3-ruby mysql pg thin rails  --no-ri --no-rdoc
 
@@ -119,6 +139,9 @@ Add to *~/.bash_profile*
 **Please specify a prefix directory** *[/opt/nginx]:*
 
 **Extra arguments to pass to configure script:** *--with-http_dav_module --with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data*
+        What cases for these modules to be installed?:
+        http_dav_module (WebDav support)
+        with-http_perl_module (perl in conig files)
 
 # Configure RDBMS
 ## PostgreSQL related stuff
@@ -279,3 +302,33 @@ Now we must place *opt/nginx/conf/sites-available/mail.spbruby.org* to */opt/ngi
 And enable it.
 
 # Monitoring
+
+
+#   Deploying
+##   Creating project on local machine
+    
+    $ gem install bundler
+    $ git clone git://github.com/rails/rails.git
+    $ bundle install
+    $ bundle exec ruby ./railties/bin/rails ../my_app
+    $ cd ../my_app
+
+    edit Gemfile:
+    add dependencies, like:
+    gem 'pg'
+    #gem 'whatever'
+    uncomment edge rails
+    gem 'rails', :git => 'git://github.com/rails/rails.git'
+    and comment 
+    #gem 'rails', '3.0.0.beta1'
+
+    $ bundle install
+    $ bundle exec rackup -p 3000
+
+    $ git init
+    $ bunlde lock
+    $ git add .
+    $ git commit -am 'project created'
+
+
+## Deploying - todo
