@@ -76,10 +76,10 @@ Add to *~/.bash_profile*
 ## RubyEE
     # apt-get install -y tcl-dev libexpat1-dev zlib1g zlib1g-dev libyaml-dev libonig-dev libopenssl-ruby libssl-dev libdbm-ruby libgdbm-ruby libgif4 readline-common libreadline-dev libreadline-ruby libtcltk-ruby byacc
     installing libyaml-dev fails: "E: Couldn't find package libyaml-dev" (Ubuntu 8.04)
-    What I did:
+What I did:
     # apt-get remove tcl-dev libtcltk-ruby 
     # apt-get autoremove
-    Why this package were needed? I've managed to compile ruby and install gems without them, what else could be removed from the above package list?
+Why this package were needed? I've managed to compile ruby and install gems without them, what else could be removed from the above package list?
 
     # chgrp admin /usr/local/src/
     # chmod g+ws /usr/local/src/
@@ -89,7 +89,7 @@ Add to *~/.bash_profile*
     $ cd rubyenterpriseedition187/
     $ autoconf 
     $ ./configure --enable-pthread --enable-shared 
-    Why --enable-pthread?
+Why --enable-pthread?
 
 From http://www.rubyenterpriseedition.com/documentation.html#_tcl_tk_compatibility_and_tt_enable_pthread_tt
 In order to use Tcl/Tk with threading support, the Ruby interpreter must be compiled with --enable-pthread. By default, Ruby Enterprise Edition's interpreter is not compiled with --enable-pthread. You can compile the Ruby Enterprise Edition interpreter with this flag by passing -c --enable-pthread to its installer, like this:
@@ -331,4 +331,4 @@ And enable it.
     $ git commit -am 'project created'
 
 
-## Deploying - todo
+## Pushing to server (git-deploy, git push master origin) - todo
