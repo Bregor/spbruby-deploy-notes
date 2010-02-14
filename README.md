@@ -91,11 +91,11 @@ Add to *~/.bash_profile*
     $ ./configure --enable-pthread --enable-shared 
     Why --enable-pthread?
 
-    From http://www.rubyenterpriseedition.com/documentation.html#_tcl_tk_compatibility_and_tt_enable_pthread_tt
-    In order to use Tcl/Tk with threading support, the Ruby interpreter must be compiled with --enable-pthread. By default, Ruby Enterprise Edition's interpreter is not compiled with --enable-pthread. You can compile the Ruby Enterprise Edition interpreter with this flag by passing -c --enable-pthread to its installer, like this:
-    ./ruby-enterprise-X.X.X/installer -c --enable-pthread
-    Please note that enabling --enable-pthread will make the Ruby interpreter *about 50% slower*. It is for this reason that we don't recommend enabling --enable-shared on server environments, although it's fine for desktop environments.
-    Also see http://timetobleed.com/fix-a-bug-in-rubys-configurein-and-get-a-30-performance-boost/
+From http://www.rubyenterpriseedition.com/documentation.html#_tcl_tk_compatibility_and_tt_enable_pthread_tt
+In order to use Tcl/Tk with threading support, the Ruby interpreter must be compiled with --enable-pthread. By default, Ruby Enterprise Edition's interpreter is not compiled with --enable-pthread. You can compile the Ruby Enterprise Edition interpreter with this flag by passing -c --enable-pthread to its installer, like this:
+./ruby-enterprise-X.X.X/installer -c --enable-pthread
+Please note that enabling --enable-pthread will make the Ruby interpreter *about 50% slower*. It is for this reason that we don't recommend enabling --enable-shared on server environments, although it's fine for desktop environments.
+Also see http://timetobleed.com/fix-a-bug-in-rubys-configurein-and-get-a-30-performance-boost/
 
     $ make
     # make install
@@ -107,11 +107,11 @@ Add to *~/.bash_profile*
     # gem in rubygems-update gemcutter --no-ri --no-rdoc
 
 ## Rails
-    Not sure if this step must be here. It is an application specific things and they have to be installed as part of deployment
-    Also I don't think that gems have to be installed under root. I would create a dedicated user per web application (spbruby in that case) 
-    and install gem under it. This way it should be possible to have several applications depending on different gem versions and they
-    should not conflict (tough I have not tested it yet).
     # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient15-dev postgresql-8.3 postgresql-server-dev-8.3 libpq-dev
+Not sure if this step must be here. It is an application specific things and they have to be installed as part of deployment
+Also I don't think that gems have to be installed under root. I would create a separate user per web application (spbruby here) 
+and install gems locally for that user. This way it should be possible to have several applications depending on different gems
+versions and they should not conflict  (in theory, tough I have not tested it yet).
     # gem in sqlite3-ruby mysql pg thin rails  --no-ri --no-rdoc
 
 ## NGINX and Phusion Passenger
