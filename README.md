@@ -309,6 +309,7 @@ And enable it.
     
     $ gem install bundler
     $ git clone git://github.com/rails/rails.git
+    $ cd rails
     $ bundle install
     $ bundle exec ruby ./railties/bin/rails ../my_app
     $ cd ../my_app
@@ -323,7 +324,7 @@ And enable it.
     #gem 'rails', '3.0.0.beta1'
 
     $ bundle install
-    $ bundle exec rackup -p 3000
+    $ bundle exec ./script/rails s
 
     $ git init
     $ bunlde lock
