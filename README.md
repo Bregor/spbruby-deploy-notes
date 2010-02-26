@@ -72,21 +72,22 @@ Add to *~/.bash_profile*
     # apt-get install -y build-essential git-core git-svn automake autoconf
 
 ## RubyEE
-    # apt-get install -y tcl-dev libexpat1-dev zlib1g zlib1g-dev libyaml-dev libonig-dev libopenssl-ruby libssl-dev libdbm-ruby libgdbm-ruby libgif4 readline-common libreadline-dev libreadline-ruby libtcltk-ruby byacc
+    # apt-get install -y libexpat1-dev zlib1g zlib1g-dev libyaml-dev libonig-dev libopenssl-ruby libssl-dev libdbm-ruby libgdbm-ruby libgif4 readline-common libreadline-dev libreadline-ruby byacc
     # chgrp admin /usr/local/src/
     # chmod g+ws /usr/local/src/
     $ cd /usr/local/src/
-    $ git clone git://github.com/FooBarWidget/rubyenterpriseedition187.git
-    $ cd rubyenterpriseedition187/
+    $ git clone git://github.com/FooBarWidget/rubyenterpriseedition187-248.git
+    $ ln -s rubyenterpriseedition187-248 ruby
+    $ cd ruby
     $ autoconf 
-    $ ./configure --enable-pthread --enable-shared 
+    $ ./configure 
     $ make
     # make install
 
 ## RubyGems
-    $ wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
-    $ tar xvf rubygems-1.3.5.tgz
-    $ cd rubygems-1.3.5
+    $ wget http://production.cf.rubygems.org/rubygems/rubygems-1.3.6.tgz
+    $ tar xvf rubygems-1.3.6.tgz
+    $ cd rubygems-1.3.6
     # ruby setup.rb
     # gem in rubygems-update gemcutter --no-ri --no-rdoc
 
@@ -118,17 +119,17 @@ Add to *~/.bash_profile*
 
 **Please specify a prefix directory** *[/opt/nginx]:*
 
-**Extra arguments to pass to configure script:** *--with-http_dav_module --with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data*
+**Extra arguments to pass to configure script:** *--with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data*
 
 # Configure RDBMS
 ## PostgreSQL related stuff
 * Access only from localhost
 
-Add to the */etc/postgresql/8.4/main/postgresql.conf*
+Add to the */etc/postgresql/8.3/main/postgresql.conf*
     listen_addresses = 'localhost'
 * Easy access from localhost
 
-Add to */etc/postgresql/8.4/main/pg_hba.conf*
+Add to */etc/postgresql/8.3/main/pg_hba.conf*
     # TYPE  DATABASE    USER        CIDR-ADDRESS          METHOD
     # Database administrative login by UNIX sockets
     # "local" is for Unix domain socket connections only
