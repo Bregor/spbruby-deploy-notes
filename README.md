@@ -76,10 +76,16 @@ Add to *~/.bash_profile*
 ## RubyEE
     # apt-get install -y tcl-dev libexpat1-dev zlib1g zlib1g-dev libyaml-dev libonig-dev libopenssl-ruby libssl-dev libdbm-ruby libgdbm-ruby libgif4 readline-common libreadline-dev libreadline-ruby libtcltk-ruby byacc
     installing libyaml-dev fails: "E: Couldn't find package libyaml-dev" (Ubuntu 8.04)
+Yes, originally it was the instructions for Ubuntu (9.10), but hoster put debian
+See commit 28ce94ec848dc10942acf0dd5a0b2fd00051f8ab for details
+
 What I did:
     # apt-get remove tcl-dev libtcltk-ruby 
     # apt-get autoremove
 Why this package were needed? I've managed to compile ruby and install gems without them, what else could be removed from the above package list?
+
+I got packages list from depends of ruby-full metapackage. In principle, we can throw tcl support without much harm to health.
+
 
     # chgrp admin /usr/local/src/
     # chmod g+ws /usr/local/src/
@@ -97,6 +103,11 @@ In order to use Tcl/Tk with threading support, the Ruby interpreter must be comp
 Please note that enabling --enable-pthread will make the Ruby interpreter *about 50% slower*. It is for this reason that we don't recommend enabling --enable-shared on server environments, although it's fine for desktop environments.
 Also see http://timetobleed.com/fix-a-bug-in-rubys-configurein-and-get-a-30-performance-boost/
 
+Both, pthread and shared, have also been torn from the ruby-full.
+tcl support will not build without --enable-pthread
+removes them from the manual as well
+
+
     $ make
     # make install
 ## RubyGems
@@ -113,6 +124,8 @@ Also I don't think that gems have to be installed under root. I would create a s
 and install gems locally for that user. This way it should be possible to have several applications depending on different gems
 versions and they should not conflict  (in theory, tough I have not tested it yet).
     # gem in sqlite3-ruby mysql pg thin rails  --no-ri --no-rdoc
+
+Well, we can remove them with you the next chapter about the bundler ;)
 
 ## NGINX and Phusion Passenger
     # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev
@@ -142,6 +155,8 @@ versions and they should not conflict  (in theory, tough I have not tested it ye
         What cases for these modules to be installed?:
         http_dav_module (WebDav support)
         with-http_perl_module (perl in conig files)
+
+In fact, these options are taken from the battle front end and there needs dav. In our instructions, I just copypaste them. About dav tidy, but about perl must still think, for some reason because it was needed...
 
 # Configure RDBMS
 ## PostgreSQL related stuff
@@ -331,5 +346,6 @@ And enable it.
     $ git add .
     $ git commit -am 'project created'
 
+Thank you for this section, I will include this nearest time.
 
 ## Pushing to server (git-deploy, git push master origin) - todo
