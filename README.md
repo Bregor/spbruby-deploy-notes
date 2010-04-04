@@ -103,23 +103,8 @@ Add to *~/.bash_profile*
     $ ln -s nginx-0.7.65 nginx
     $ git clone git://github.com/FooBarWidget/passenger.git
     $ cd passenger
-    # ./bin/passenger-install-nginx-module
+    # ./bin/passenger-install-nginx-module  --auto --prefix=/opt/nginx --nginx-source-dir=/usr/local/src/nginx --extra-configure-flags='--with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data'
 
-**Automatically download and install Nginx?**
-
-...
-
-**Enter your choice (1 or 2) or press Ctrl-C to abort:**
-
-*Choose 2 and press enter*
-
-**Where is your Nginx source code located?**
-
-**Please specify the directory:** */usr/local/src/nginx*
-
-**Please specify a prefix directory** *[/opt/nginx]:*
-
-**Extra arguments to pass to configure script:** *--with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data*
 
 # Configure RDBMS
 ## PostgreSQL related stuff
