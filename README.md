@@ -85,7 +85,7 @@ Add to *~/.bash_profile*
     # make install
 
 ## RubyGems
-    $ wget http://production.cf.rubygems.org/rubygems/rubygems-1.3.6.tgz
+    $ wget http://production.cf.rubygems.org/rubygems/rubygems-1.3.7.tgz
     $ tar xvf rubygems-1.3.6.tgz
     $ cd rubygems-1.3.6
     # ruby setup.rb
