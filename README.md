@@ -98,9 +98,9 @@ Add to *~/.bash_profile*
 ## NGINX and Phusion Passenger
     # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev
     $ cd /usr/local/src
-    $ wget http://sysoev.ru/nginx/nginx-0.7.66.tar.gz
-    $ tar xvf nginx-0.7.66.tar.gz
-    $ ln -s nginx-0.7.66 nginx
+    $ wget http://sysoev.ru/nginx/nginx-0.7.67.tar.gz
+    $ tar xvf nginx-0.7.67.tar.gz
+    $ ln -s nginx-0.7.67 nginx
     $ git clone git://github.com/FooBarWidget/passenger.git
     $ cd passenger
     # ./bin/passenger-install-nginx-module  --auto --prefix=/opt/nginx --nginx-source-dir=/usr/local/src/nginx --extra-configure-flags='--with-http_flv_module --with-http_perl_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-pcre --with-poll_module --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data'
