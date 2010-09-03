@@ -86,8 +86,8 @@ Add to *~/.bash_profile*
 
 ## RubyGems
     $ wget http://production.cf.rubygems.org/rubygems/rubygems-1.3.7.tgz
-    $ tar xvf rubygems-1.3.6.tgz
-    $ cd rubygems-1.3.6
+    $ tar xvf rubygems-1.3.7.tgz
+    $ cd rubygems-1.3.7
     # ruby setup.rb
     # gem in rubygems-update gemcutter --no-ri --no-rdoc
 
