@@ -92,7 +92,7 @@ Add to *~/.bash_profile*
     # gem in rubygems-update gemcutter --no-ri --no-rdoc
 
 ## Rails
-    # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient15-dev postgresql-8.3 postgresql-server-dev-8.3 libpq-dev
+    # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient15-dev postgresql-8.4 postgresql-server-dev-8.4 libpq-dev
     # gem in sqlite3-ruby mysql pg thin rails  --no-ri --no-rdoc
 
 ## NGINX and Phusion Passenger
@@ -110,11 +110,11 @@ Add to *~/.bash_profile*
 ## PostgreSQL related stuff
 * Access only from localhost
 
-Add to the */etc/postgresql/8.3/main/postgresql.conf*
+Add to the */etc/postgresql/8.4/main/postgresql.conf*
     listen_addresses = 'localhost'
 * Easy access from localhost
 
-Add to */etc/postgresql/8.3/main/pg_hba.conf*
+Add to */etc/postgresql/8.4/main/pg_hba.conf*
     # TYPE  DATABASE    USER        CIDR-ADDRESS          METHOD
     # Database administrative login by UNIX sockets
     # "local" is for Unix domain socket connections only
