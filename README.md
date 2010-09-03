@@ -89,7 +89,7 @@ Add to *~/.bash_profile*
     $ tar xvf rubygems-1.3.7.tgz
     $ cd rubygems-1.3.7
     # ruby setup.rb
-    # gem in rubygems-update gemcutter --no-ri --no-rdoc
+    # gem in rubygems-update bundler jeweler --no-ri --no-rdoc
 
 ## Rails
     # apt-get install -y sqlite3 libsqlite3-dev mysql-server libmysqlclient15-dev postgresql-8.4 postgresql-server-dev-8.4 libpq-dev
