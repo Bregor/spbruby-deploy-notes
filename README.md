@@ -257,10 +257,10 @@ Place *etc/logrotate.d/spbruby.org* and *etc/logrotate.d/nginx* to */etc/logrota
     $ cd /var/www/mail.spbruby.org
     $ mkdir conf log
     $ cd /usr/local/src
-    $ wget http://sunet.dl.sourceforge.net/project/roundcubemail/roundcubemail/0.3.1/roundcubemail-0.3.1.tar.gz
-    # tar xvf roundcubemail-0.3.1.tar.gz -C /var/www/mail.spbruby.org/
+    $ wget http://sunet.dl.sourceforge.net/project/roundcubemail/roundcubemail/0.4/roundcubemail-0.4.tar.gz
+    # tar xvf roundcubemail-0.4.tar.gz -C /var/www/mail.spbruby.org/
     $ cd /var/www/mail.spbruby.org/
-    $ ln -s roundcubemail-0.3.1 public
+    $ ln -s roundcubemail-0.4 public
 Now we must place *opt/nginx/conf/sites-available/mail.spbruby.org* to */opt/nginx/conf/sites-available/*  
 And enable it.
 
