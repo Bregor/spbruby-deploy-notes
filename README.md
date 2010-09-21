@@ -263,7 +263,7 @@ Place *etc/logrotate.d/spbruby.org* and *etc/logrotate.d/nginx* to */etc/logrota
     $ ln -s roundcubemail-0.4 public
 Now we must place *opt/nginx/conf/sites-available/mail.spbruby.org* to */opt/nginx/conf/sites-available/*  
 And enable it.
-
+    # nginxensite mail.spbruby.org
 # Autostart services
 ## Runit
 ### Installation
