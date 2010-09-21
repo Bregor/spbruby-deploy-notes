@@ -1,0 +1,6 @@
+#!/bin/sh
+exec 2>&1
+
+PHP_FCGI_CHILDREN=5 \
+PHP_FCGI_MAX_REQUESTS=1000 \
+exec /usr/bin/spawn-fcgi -a 127.0.0.1 -p 9000 -u www-data -g www-data -n -- /usr/bin/php5-cgi

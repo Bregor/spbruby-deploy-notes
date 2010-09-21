@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec 2>&1
+
+exec runit-man -p 12700 -f /etc/sv -a /etc/service

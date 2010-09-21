@@ -1,0 +1,4 @@
+#!/bin/sh
+exec 2>&1
+
+exec /opt/nginx/sbin/nginx -c /opt/nginx/conf/nginx.conf -p /opt/nginx/
