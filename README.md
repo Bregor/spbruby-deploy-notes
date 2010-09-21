@@ -264,4 +264,24 @@ Place *etc/logrotate.d/spbruby.org* and *etc/logrotate.d/nginx* to */etc/logrota
 Now we must place *opt/nginx/conf/sites-available/mail.spbruby.org* to */opt/nginx/conf/sites-available/*  
 And enable it.
 
+# Autostart services
+## Runit
+### Installation
+    # apt-get install -y runit
+    # gem in runit-man --no-ri --no-rdoc
+    # mkdir -p /etc/sv/nginx /etc/sv/spawn-fcgi/log /etc/sv/runit-man/log
+### Configuration
+Place runit recipes from etc/sv to system /etc/sv
+    # cp -r etc/sv/* /etc/sv/
+And add symlinks to /etc/service/ and /etc/init.d/ for autorun
+    # for i in nginx spawn-fcgi runit-man; do ln -s /usr/bin/sv /etc/init.d/${i}; ln -s /etc/sv/${i} /etc/service/; update-rc.d ${i} defaults; done
+Don't forget to enable access to runit-manager from your host
+    # iptables -A INPUT -p tcp --dport 12700 -s <your-IP> -j ACCEPT
+And save iptables config
+    # iptables-save > /var/lib/iptables/rules_save
+From now you can run runit-manager and access it via HTTP
+    # sv start runit-man
+or
+    # /etc/init.d/runit-man start
+It will be accessible on your host:12700 via HTTP
 # Monitoring
