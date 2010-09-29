@@ -96,7 +96,7 @@ Add to *~/.bash_profile*
     # gem in sqlite3-ruby mysql pg thin rails  --no-ri --no-rdoc
 
 ## NGINX and Phusion Passenger
-    # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev
+    # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev curl-ssl libcurl4-openssl-dev
     $ cd /usr/local/src
     $ wget http://sysoev.ru/nginx/nginx-0.8.52.tar.gz
     $ tar xvf nginx-0.8.52.tar.gz
