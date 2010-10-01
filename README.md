@@ -283,4 +283,14 @@ From now you can run runit-manager and access it via HTTP
 or
     # /etc/init.d/runit-man start
 It will be accessible on your host:12700 via HTTP
+# Search
+## Sphinx
+### Installation
+    $ wget http://www.sphinxsearch.com/downloads/sphinx-1.10-beta.tar.gz && tar xvf sphinx-1.10-beta.tar.gz && ln -nsf sphinx-1.10-beta sphinx && rm -f sphinx-1.10-beta.tar.gz
+    $ cd sphinx
+    $ wget http://snowball.tartarus.org/dist/libstemmer_c.tgz && tar xvf libstemmer_c.tgz && rm -f libstemmer_c.tgz
+    $ ./configure --with-pgsql --without-mysql --with-libstemmer 
+Use **--with-mysql --without-pgsql** in case of MySQL database
+    $ make
+    # make install
 # Monitoring
