@@ -98,7 +98,7 @@ Add to *~/.bash_profile*
 ## NGINX and Phusion Passenger
     # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev curl-ssl libcurl4-openssl-dev
     $ cd /usr/local/src
-    $ wget http://sysoev.ru/nginx/nginx-0.8.52.tar.gz && tar xvf nginx-0.8.52.tar.gz && ln -nfs nginx-0.8.52 nginx && rm -f nginx-0.8.52.tar.gz
+    $ wget http://sysoev.ru/nginx/nginx-0.8.53.tar.gz && tar xvf nginx-0.8.53.tar.gz && ln -nfs nginx-0.8.53 nginx && rm -f nginx-0.8.53.tar.gz
     $ wget http://citylan.dl.sourceforge.net/project/pcre/pcre/8.10/pcre-8.10.tar.bz2 && tar xvf pcre-8.10.tar.bz2 && ln -nsf pcre-8.10 pcre && rm -f pcre-8.10.tar.bz2
     $ git clone git://github.com/FooBarWidget/passenger.git
     $ cd passenger
