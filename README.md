@@ -81,7 +81,7 @@ Add to *~/.bash_profile*
     $ cd ruby
     $ autoconf 
     $ ./configure 
-    $ make
+    $ make -j`expr $(grep processor /proc/cpuinfo | wc -l) + 1`
     # make install
 
 ## RubyGems
@@ -291,6 +291,6 @@ It will be accessible on your host:12700 via HTTP
     $ wget http://snowball.tartarus.org/dist/libstemmer_c.tgz && tar xvf libstemmer_c.tgz && rm -f libstemmer_c.tgz
     $ ./configure --with-pgsql --without-mysql --with-libstemmer 
 Use **--with-mysql --without-pgsql** in case of MySQL database
-    $ make
+    $ make -j`expr $(grep processor /proc/cpuinfo | wc -l) + 1`
     # make install
 # Monitoring
