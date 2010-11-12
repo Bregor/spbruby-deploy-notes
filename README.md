@@ -174,7 +174,7 @@ Then run:
 # Configure SSL
 ## Create self-signed CA
     # apt-get install -y openvpn
-    # mv /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/ssl/
+    # mv /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/ssl/easy-rsa
     # apt-get remove -y openvpn
     # apt-get -y autoremove
     $ cd /etc/ssl/easy-rsa
