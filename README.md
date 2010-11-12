@@ -198,12 +198,6 @@ Make a certificate/private key pair using a locally generated root certificate.
     # ./build-key-server mail.spbruby.org
 
 # Configure nginx
-## Autostart
-Place *./etc/init.d/nginx* to */etc/init.d/*
-Make them executable
-    # chmod 755 /etc/init.d/nginx
-And ready to autostart
-    # update-rc.d -f nginx default
 ## Vhosts management
 Place utils for manage nginx vhosts to */usr/local/bin/* and make them executable:
     $ chmod +x ./usr/local/bin/*
