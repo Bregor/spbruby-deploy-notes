@@ -7,7 +7,7 @@ server {
   access_log  /var/www/spbruby.org/log/access.log  combined;
   error_log  /var/www/spbruby.org/log/error.log debug;
 
-  root /var/www/spbruby.org/gitorious/public;
+  root /var/www/spbruby.org/public;
 
   location / {
     default_type text/html;
@@ -41,7 +41,7 @@ server {
   access_log /var/www/spbruby.org/log/access-ssl.log;
   error_log /var/www/spbruby.org/log/error-ssl.log;  
 
-  root /var/www/spbruby.org/gitorious/public;
+  root /var/www/spbruby.org/public;
 
   location / {
     default_type text/html;
