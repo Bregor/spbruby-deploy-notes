@@ -76,8 +76,8 @@ Add to *~/.bash_profile*
     # chgrp admin /usr/local/src/
     # chmod g+ws /usr/local/src/
     $ cd /usr/local/src/
-    $ git clone git://github.com/FooBarWidget/rubyenterpriseedition187-248.git
-    $ ln -s rubyenterpriseedition187-248 ruby
+    $ git clone git://github.com/FooBarWidget/rubyenterpriseedition187-330.git
+    $ ln -s rubyenterpriseedition187-330 ruby
     $ cd ruby
     $ autoconf 
     $ ./configure 
