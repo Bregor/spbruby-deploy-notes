@@ -85,9 +85,9 @@ Add to *~/.bash_profile*
     # make install
 
 ## RubyGems
-    $ wget http://production.cf.rubygems.org/rubygems/rubygems-1.3.7.tgz
-    $ tar xvf rubygems-1.3.7.tgz
-    $ cd rubygems-1.3.7
+    $ wget http://production.cf.rubygems.org/rubygems/rubygems-1.5.2.tgz
+    $ tar xvf rubygems-1.5.2.tgz
+    $ cd rubygems-1.5.2
     # ruby setup.rb
     # gem in rubygems-update bundler jeweler --no-ri --no-rdoc
 
