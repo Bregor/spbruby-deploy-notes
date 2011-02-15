@@ -98,8 +98,8 @@ Add to *~/.bash_profile*
 ## NGINX and Phusion Passenger
     # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev curl-ssl libcurl4-openssl-dev
     $ cd /usr/local/src
-    $ wget http://sysoev.ru/nginx/nginx-0.8.53.tar.gz && tar xvf nginx-0.8.53.tar.gz && ln -nfs nginx-0.8.53 nginx && rm -f nginx-0.8.53.tar.gz
-    $ wget http://citylan.dl.sourceforge.net/project/pcre/pcre/8.10/pcre-8.10.tar.bz2 && tar xvf pcre-8.10.tar.bz2 && ln -nsf pcre-8.10 pcre && rm -f pcre-8.10.tar.bz2
+    $ wget http://sysoev.ru/nginx/nginx-0.8.54.tar.gz && tar xvf nginx-0.8.54.tar.gz && ln -nfs nginx-0.8.54 nginx && rm -f nginx-0.8.54.tar.gz
+    $ wget http://citylan.dl.sourceforge.net/project/pcre/pcre/8.12/pcre-8.12.tar.bz2 && tar xvf pcre-8.12.tar.bz2 && ln -nsf pcre-8.12 pcre && rm -f pcre-8.12.tar.bz2
     $ git clone git://github.com/FooBarWidget/passenger.git
     $ cd passenger
     # ./bin/passenger-install-nginx-module  --auto --prefix=/opt/nginx --nginx-source-dir=/usr/local/src/nginx --extra-configure-flags='--with-http_flv_module --with-http_realip_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-http_stub_status_module --with-poll_module --with-pcre=/usr/local/src/pcre --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=www-data --group=www-data'
