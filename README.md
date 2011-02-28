@@ -79,6 +79,7 @@ Add to *~/.bash_profile*
     $ git clone git://github.com/FooBarWidget/rubyenterpriseedition187-330.git
     $ ln -s rubyenterpriseedition187-330 ruby
     $ cd ruby
+    $ git checkout -b 2011.03 release-2011.03
     $ autoconf 
     $ ./configure 
     $ make -j`expr $(grep processor /proc/cpuinfo | wc -l) + 1`
