@@ -86,9 +86,9 @@ Add to *~/.bash_profile*
     # make install
 
 ## RubyGems
-    $ wget http://production.cf.rubygems.org/rubygems/rubygems-1.5.2.tgz
-    $ tar xvf rubygems-1.5.2.tgz
-    $ cd rubygems-1.5.2
+    $ wget http://production.cf.rubygems.org/rubygems/rubygems-1.7.2.tgz
+    $ tar xvf rubygems-1.7.2.tgz
+    $ cd rubygems-1.7.2
     # ruby setup.rb
     # gem in rubygems-update bundler --no-ri --no-rdoc
 
@@ -99,7 +99,7 @@ Add to *~/.bash_profile*
 ## NGINX and Phusion Passenger
     # apt-get install -y libpcre3 libpcre3-dev libperl-dev libxml2-dev libxml2 libxslt-dev curl-ssl libcurl4-openssl-dev
     $ cd /usr/local/src
-    $ wget http://sysoev.ru/nginx/nginx-0.8.54.tar.gz && tar xvf nginx-0.8.54.tar.gz && ln -nfs nginx-0.8.54 nginx && rm -f nginx-0.8.54.tar.gz
+    $ wget http://sysoev.ru/nginx/nginx-1.0.1.tar.gz && tar xvf nginx-1.0.1.tar.gz && ln -nfs nginx-1.0.1 nginx && rm -f nginx-1.0.1.tar.gz
     $ wget http://citylan.dl.sourceforge.net/project/pcre/pcre/8.12/pcre-8.12.tar.bz2 && tar xvf pcre-8.12.tar.bz2 && ln -nsf pcre-8.12 pcre && rm -f pcre-8.12.tar.bz2
     $ git clone git://github.com/FooBarWidget/passenger.git
     $ cd passenger
