@@ -167,42 +167,60 @@ Fill the questionnaire:
 ** ... Success!**
 
 Then run:
-    $ mysql -uroot -p
+
+$ mysql -uroot -p
     mysql> CREATE DATABASE spbruby;
     mysql> GRANT ALL ON spbruby.* TO spbruby@localhost IDENTIFIED BY 'superpuperpassword';
     mysql> FLUSH PRIVILEGES;
 
 # Configure SSL
 ## Create self-signed CA
+
     # apt-get install -y openvpn
     # mv /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/ssl/easy-rsa
     # apt-get remove -y openvpn
     # apt-get -y autoremove
     $ cd /etc/ssl/easy-rsa
+
 Update *vars* file with following:
+
     export KEY_COUNTRY="RU"
     export KEY_PROVINCE="RU"
     export KEY_CITY="Saint Petersburg"
     export KEY_ORG="spbruby.org"
     export KEY_EMAIL="security@spbruby.org"
+
 Import *vars* to current shell:
-    # . vars
+    
+    # source vars
+
 Initialize the $KEY_DIR directory:
+
     # ./clean-all
+
 Build a root certificate
+
     # ./build-ca
+
 ## Create server-side certificates
 Build Diffie-Hellman parameters for the server side of an SSL/TLS connection.
+
     # ./build-dh
+
 Make a certificate/private key pair using a locally generated root certificate.
+
     # ./build-key-server spbruby.org
     # ./build-key-server mail.spbruby.org
 
 # Configure nginx
+
 ## Vhosts management
+
 Place utils for manage nginx vhosts to */usr/local/bin/* and make them executable:
+
     $ chmod +x ./usr/local/bin/*
     # mv ./usr/local/bin/* /usr/local/bin/
+
 ## Configuration
 Then place *./opt/nginx/conf/nginx.conf* to */opt/nginx/conf/*
 
